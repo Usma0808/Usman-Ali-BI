@@ -130,9 +130,29 @@
 
     /* RESPONSIVE BREAKPOINTS */
     @media(max-width:1024px){
-        .pf, .pf.rev, .cg, .sg{grid-template-columns:1fr;}
+        .pf, .pf.rev, .cg{grid-template-columns:1fr;}
         .pf.rev .pfi { order: 0; }
         .pfi { min-height: 300px; }
+        .hero-container { gap: 20px; } /* Adjust gap for smaller screens */
+        .hero { padding: 80px 6% 40px; } /* Adjust hero padding */
+        h1 { font-size: clamp(38px, 9vw, 80px); letter-spacing: -2px; } /* Adjust h1 size and spacing */
+        section { padding: 80px 6%; } /* Adjust section padding */
+    }
+
+    @media(max-width:768px){ /* Added for tablets and smaller desktops */
+        nav { padding: 10px 4%; }
+        .nav-links { gap: 20px; }
+        .hero-name { font-size: 20px; }
+        .hero-role { font-size: 14px; }
+        .photo-frame { max-width: 300px; aspect-ratio: 300 / 380; border-radius: 16px; }
+        .stats-grid { max-width: 500px; }
+        .stat-item { padding: 20px; border-radius: 12px; }
+        .sn { font-size: 30px; }
+        .pt { font-size: 24px; }
+        .pd { font-size: 15px; }
+        .skill-group { padding: 30px; border-radius: 16px; }
+        .cg { gap: 30px; }
+        .cf-box { border-radius: 24px; }
     }
 
     @media(max-width:600px){
@@ -141,7 +161,42 @@
         .stats-grid { grid-template-columns: 1fr; }
         h1 { letter-spacing: -1px; }
         section { padding: 60px 6%; }
+        .hero { padding: 60px 6% 30px; }
+        .hero-name { font-size: 18px; }
+        .hero-role { font-size: 12px; }
+        h1 { font-size: clamp(30px, 10vw, 60px); }
+        .photo-frame { max-width: 250px; aspect-ratio: 250 / 320; border-radius: 12px; }
+        .pt { font-size: 20px; margin-bottom: 10px; }
+        .pd { font-size: 14px; }
+        .pfb { padding: clamp(20px, 4%, 40px); }
+        footer { padding: 40px 6%; font-size: 10px; }
     }
+    @media(max-width:480px){ /* Added for small mobile devices */
+        nav { padding: 10px 4%; }
+        .mono-logo { width: 40px; height: 40px; font-size: 14px; }
+        .nav-id { margin-left: 10px; }
+        .nav-name-top { font-size: 16px; }
+        .hero { padding: 40px 4% 20px; }
+        .hero-name { font-size: 16px; }
+        .hero-role { font-size: 11px; }
+        h1 { font-size: clamp(28px, 12vw, 50px); }
+        .hero-loc { font-size: 12px; margin-bottom: 30px; }
+        .btns { gap: 10px; }
+        .bp, .bs { padding: 15px 25px; font-size: 11px; }
+        .stats-grid { gap: 15px; margin-top: 40px; }
+        .stat-item { padding: 15px; }
+        .sn { font-size: 28px; }
+        h2 { font-size: clamp(28px, 6vw, 40px); margin-bottom: 30px; }
+        section { padding: 50px 4%; }
+        .pfb { padding: 20px; }
+        .ptag { font-size: 9px; margin-bottom: 15px; }
+        .pt { font-size: 18px; }
+        .pd { font-size: 13px; }
+        .skill-group { padding: 25px; }
+        .contact-item { font-size: 16px; }
+        footer { padding: 30px 4%; }
+    }
+
 
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 </style>
