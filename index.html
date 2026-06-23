@@ -6,9 +6,12 @@
 <title>Usman Ali – Senior BI Analyst</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<!-- Font Awesome for Sun/Moon Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
     *{margin:0;padding:0;box-sizing:border-box;}
     :root{
+        /* Dark Mode */
         --bg:#07090f;
         --bg2:#0c1018;
         --bg3:#111620;
@@ -17,9 +20,32 @@
         --text:#dde4f0;
         --muted:#8b99b3;
         --border:rgba(255,255,255,0.08);
+
+        /* Light Mode - Default values (will be overridden by .light-mode) */
+        --light-bg:#f8f9fa;
+        --light-bg2:#ffffff;
+        --light-bg3:#e9ecef;
+        --light-c:#007bff; /* A nice blue for light mode */
+        --light-c-dim:rgba(0,123,255,0.15);
+        --light-text:#343a40;
+        --light-muted:#6c757d;
+        --light-border:rgba(0,0,0,0.1);
     }
+
+    /* Light Mode Variables */
+    body.light-mode{
+        --bg:var(--light-bg);
+        --bg2:var(--light-bg2);
+        --bg3:var(--light-bg3);
+        --c:var(--light-c);
+        --c-dim:var(--light-c-dim);
+        --text:var(--light-text);
+        --muted:var(--light-muted);
+        --border:var(--light-border);
+    }
+
     html{scroll-behavior:smooth;}
-    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden; line-height: 1.6;}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden; line-height: 1.6; transition: background 0.3s ease, color 0.3s ease;}
 
     /* Background decorative grid - EXACT ORIGINAL 60PX */
     body::before{
@@ -28,12 +54,17 @@
         background-size:60px 60px;pointer-events:none;z-index:0;
     }
 
-    nav{position:sticky;top:0;z-index:100;background:rgba(7,9,15,0.85);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:12px 6%;backdrop-filter:blur(20px);}
+    nav{position:sticky;top:0;z-index:100;background:rgba(7,9,15,0.85);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:12px 6%;backdrop-filter:blur(20px); transition: background 0.3s ease, border-color 0.3s ease;}
+    body.light-mode nav {
+        background: rgba(248, 249, 250, 0.85); /* Light mode nav background */
+        border-bottom: 1px solid var(--light-border);
+    }
+
     .nav-logo{
         display: flex; /* Make logo and text side-by-side */
         align-items: center; /* Vertically align them */
     }
-    .mono-logo{width:45px;height:45px;border:2px solid var(--c);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:var(--c);box-shadow: 0 0 15px var(--c-dim);flex-shrink: 0;}
+    .mono-logo{width:45px;height:45px;border:2px solid var(--c);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:var(--c);box-shadow: 0 0 15px var(--c-dim);flex-shrink: 0; transition: border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;}
     .nav-id{margin-left:15px; display: flex; align-items: center;} /* Adjusted to be a flex container */
     .nav-name-top{
         font-family:'Syne',sans-serif;
@@ -42,8 +73,9 @@
         letter-spacing:-0.5px;
         color: var(--c); /* Apply the cyan color */
         margin-right: 15px; /* Space between name and potential next element */
+        transition: color 0.3s ease;
     }
-    .nav-links{display:flex;gap:30px;}
+    .nav-links{display:flex;gap:30px; align-items: center;} /* Added align-items: center for toggle */
     .nav-links a{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:0.3s;}
     .nav-links a:hover{color:var(--c);}
 
@@ -51,11 +83,11 @@
     .hero{min-height:95vh;display:flex;align-items:center;justify-content:center;padding:100px 6% 60px;position:relative;z-index:1;text-align:center;}
     .hero-container{display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 1000px; gap: 40px;}
     
-    .hero-name{font-family:'Syne',sans-serif; font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 2px;}
-    .hero-role{font-family:'DM Mono',monospace;font-size:16px;color:var(--c);margin-bottom:20px; letter-spacing: 1px; text-transform: uppercase;}
-    h1{font-family:'Syne',sans-serif;font-size:clamp(40px, 8vw, 80px);font-weight:750;line-height:0.9;margin-bottom:30px;text-transform:uppercase;letter-spacing:-3px;}
-    h1 span{color:var(--c); /* Removed display: block; */}
-    .hero-loc{color:var(--muted);margin-bottom:40px; font-size: 14px;}
+    .hero-name{font-family:'Syne',sans-serif; font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s ease;}
+    .hero-role{font-family:'DM Mono',monospace;font-size:16px;color:var(--c);margin-bottom:20px; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s ease;}
+    h1{font-family:'Syne',sans-serif;font-size:clamp(40px, 8vw, 80px);font-weight:750;line-height:0.9;margin-bottom:30px;text-transform:uppercase;letter-spacing:-3px; transition: color 0.3s ease;}
+    h1 span{color:var(--c); transition: color 0.3s ease;}
+    .hero-loc{color:var(--muted);margin-bottom:40px; font-size: 14px; transition: color 0.3s ease;}
 
     /* Photo Styling - WITH CYAN HIGHLIGHT */
     .photo-frame {
@@ -69,7 +101,7 @@
         overflow: hidden;
         background: var(--bg2);
         box-shadow: 0 30px 60px -12px rgba(0,0,0,0.5);
-        transition: 0.5s ease;
+        transition: all 0.5s ease;
     }
     .photo-frame:hover { 
         border-color: var(--c); 
@@ -82,23 +114,26 @@
         position: absolute; width: 100%; height: 100%;
         background: radial-gradient(circle, var(--c-dim) 0%, transparent 70%);
         top: 0; left: 0; z-index: -1;
+        transition: background 0.3s ease;
     }
 
     .btns{display:flex;gap:20px; justify-content: center; flex-wrap: wrap;}
     .bp, .bs{font-family:'Syne',sans-serif;font-size:12px;padding:18px 35px;letter-spacing:1px;text-transform:uppercase;transition:0.3s; border-radius: 4px; text-decoration: none; display: inline-block;}
-    .bp{background:var(--c);color:#07090f;font-weight:800;border:none;}
-    .bs{background:transparent;color:var(--c);font-weight:700;border:1px solid var(--c);}
-    .bp:hover { background: #fff; transform: translateY(-5px); }
+    .bp{background:var(--c);color:#07090f;font-weight:800;border:none; transition: all 0.3s ease;}
+    body.light-mode .bp { color: var(--light-bg); }
+    .bs{background:transparent;color:var(--c);font-weight:700;border:1px solid var(--c); transition: all 0.3s ease;}
+    .bp:hover { background: var(--text); transform: translateY(-5px); }
+    body.light-mode .bp:hover { background: var(--light-text); color: var(--light-bg); }
     .bs:hover { background: var(--c-dim); }
 
     .stats-grid{display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 50px; width: 100%; max-width: 600px;}
-    .stat-item{padding:25px; background:var(--bg2); border:1px solid var(--border); border-radius: 16px; transition: 0.3s;}
+    .stat-item{padding:25px; background:var(--bg2); border:1px solid var(--border); border-radius: 16px; transition: all 0.3s;}
     .stat-item:hover { border-color: var(--c); box-shadow: 0 0 15px var(--c-dim); }
-    .sn{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--c); margin-bottom: 5px;}
+    .sn{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--c); margin-bottom: 5px; transition: color 0.3s ease;}
 
     /* Content Sections */
     section{padding:100px 6%;max-width:1300px;margin:0 auto;}
-    h2{font-family:'Syne',sans-serif;font-size:clamp(32px, 5vw, 48px);font-weight:800;margin-bottom:40px; letter-spacing: -1.5px;}
+    h2{font-family:'Syne',sans-serif;font-size:clamp(32px, 5vw, 48px);font-weight:800;margin-bottom:40px; letter-spacing: -1.5px; transition: color 0.3s ease;}
 
     /* PROJECTS - HIGHLIGHTED LIKE PHOTO BORDER */
     .pf{
@@ -109,35 +144,57 @@
         overflow:hidden;
         border-radius:24px; 
         margin-bottom: 40px; 
-        transition: 0.5s ease; /* Matches photo transition */
+        transition: all 0.5s ease; /* Matches photo transition */
     }
     .pf:hover { 
         border-color: var(--c); /* Cyan Highlight */
         transform: translateY(-10px); /* Lift effect */
-        box-shadow: 0 20px 40px -10px rgba(0, 229, 255, 0.2); /* Glow shadow */
+        box-shadow: 0 20px 40px -10px var(--c-dim); /* Glow shadow */
     }
     .pf.rev {grid-template-columns: 1fr 1.2fr;}
-    .pfi{position:relative;background:#000; min-height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden;}
+    .pfi{position:relative;background:var(--bg3); min-height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: background 0.3s ease;}
     .pfi img{width: 100%; height: 100%; object-fit: cover;}
     .pfb{padding:clamp(25px, 5%, 50px);}
-    .ptag{display: inline-block; padding: 6px 14px; background: var(--c-dim); color: var(--c); border-radius: 6px; font-family: 'DM Mono'; font-size: 10px; margin-bottom: 20px;}
-    .pt{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;margin-bottom:15px;}
-    .pd{font-size:16px;color:var(--muted); margin-bottom: 25px;}
+    .ptag{display: inline-block; padding: 6px 14px; background: var(--c-dim); color: var(--c); border-radius: 6px; font-family: 'DM Mono'; font-size: 10px; margin-bottom: 20px; transition: background 0.3s ease, color 0.3s ease;}
+    .pt{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;margin-bottom:15px; transition: color 0.3s ease;}
+    .pd{font-size:16px;color:var(--muted); margin-bottom: 25px; transition: color 0.3s ease;}
 
     .sg{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:30px;}
-    .skill-group{background:var(--bg2);border:1px solid var(--border);padding:40px; border-radius: 20px; transition: 0.4s;}
+    .skill-group{background:var(--bg2);border:1px solid var(--border);padding:40px; border-radius: 20px; transition: all 0.4s;}
     .skill-group:hover { border-color: var(--c); box-shadow: 0 0 15px var(--c-dim); }
 
     /* Contact Card */
     .cg{display:grid;grid-template-columns:1fr 1.2fr;gap:40px; align-items: center;}
-    .cf-box{background:var(--bg2);border:1px solid var(--border);padding:clamp(30px, 5%, 50px); border-radius: 32px; text-align: center; transition: 0.4s;}
+    .cf-box{background:var(--bg2);border:1px solid var(--border);padding:clamp(30px, 5%, 50px); border-radius: 32px; text-align: center; transition: all 0.4s;}
     .cf-box:hover { border-color: var(--c); box-shadow: 0 0 20px var(--c-dim); }
     
     #contactDetails { display: none; margin-top: 20px; animation: fadeIn 0.5s ease forwards; }
-    .contact-item { font-family: 'DM Mono', monospace; font-size: 18px; color: var(--c); margin-bottom: 15px; display: block; text-decoration: none; }
-    .contact-label { font-size: 12px; color: var(--muted); text-transform: uppercase; margin-bottom: 5px; }
+    .contact-item { font-family: 'DM Mono', monospace; font-size: 18px; color: var(--c); margin-bottom: 15px; display: block; text-decoration: none; transition: color 0.3s ease;}
+    .contact-label { font-size: 12px; color: var(--muted); text-transform: uppercase; margin-bottom: 5px; transition: color 0.3s ease;}
 
-    footer{text-align:center;padding:60px;border-top:1px solid var(--border);color:var(--muted); font-family: 'DM Mono'; font-size: 12px;}
+    footer{text-align:center;padding:60px;border-top:1px solid var(--border);color:var(--muted); font-family: 'DM Mono'; font-size: 12px; transition: border-color 0.3s ease, color 0.3s ease;}
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+        background: none;
+        border: none;
+        color: var(--muted);
+        font-size: 1.2em;
+        cursor: pointer;
+        margin-left: 20px;
+        transition: color 0.3s ease;
+        padding: 0; /* Remove default button padding */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .theme-toggle:hover {
+        color: var(--c);
+    }
+    .theme-toggle i {
+        pointer-events: none; /* Prevent icon from interfering with click */
+    }
+
 
     /* RESPONSIVE BREAKPOINTS */
     @media(max-width:1024px){
@@ -153,6 +210,7 @@
     @media(max-width:768px){ /* Added for tablets and smaller desktops */
         nav { padding: 10px 4%; }
         .nav-links { gap: 20px; }
+        .theme-toggle { margin-left: 15px; } /* Adjust margin for smaller screens */
         .hero-name { font-size: 20px; }
         .hero-role { font-size: 14px; }
         .photo-frame { max-width: 300px; aspect-ratio: 300 / 380; border-radius: 16px; }
@@ -198,6 +256,14 @@
             font-size: 16px; /* Adjust size for small screens */
             margin-right: 0; /* Remove extra margin */
         }
+        /* Ensure toggle button is aligned with links in wrapped nav */
+        .theme-toggle {
+            margin-left: 0; /* Remove margin to fit within wrapped links */
+            width: auto; /* Allow button to size naturally */
+            order: 99; /* Push to the end of flex items if it wraps */
+            padding: 5px 0; /* Match link padding */
+        }
+
 
         .btns a { width: 100%; }
         .stats-grid { grid-template-columns: 1fr; }
@@ -253,7 +319,7 @@
   <div class="nav-logo">
     <div class="mono-logo">UA</div>
     <div class="nav-id">
-      <div class="nav-name-top">Usman Ali</div> <!-- Added "Usman Ali" here -->
+      <div class="nav-name-top">Usman Ali</div>
     </div>
   </div>
   <div class="nav-links">
@@ -261,6 +327,9 @@
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
     <a href="#contact">Connect</a>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light/dark mode">
+        <i class="fas fa-moon"></i> <!-- Default to moon for dark mode -->
+    </button>
   </div>
 </nav>
 
@@ -431,6 +500,46 @@ PROJECTS.forEach((p, index) => {
 document.getElementById('revealBtn').addEventListener('click', function() {
     document.getElementById('contactPrompt').style.display = 'none';
     document.getElementById('contactDetails').style.display = 'block';
+});
+
+// Theme Toggle Script
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Check for saved theme preference or system preference
+const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+
+function applyTheme(isLight) {
+    if (isLight) {
+        body.classList.add('light-mode');
+        themeToggle.querySelector('i').className = 'fas fa-sun';
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.classList.remove('light-mode');
+        themeToggle.querySelector('i').className = 'fas fa-moon';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Initial theme load
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    applyTheme(savedTheme === 'light');
+} else {
+    // Default to dark mode if no preference is saved
+    applyTheme(false); 
+}
+
+// Listen for toggle click
+themeToggle.addEventListener('click', () => {
+    applyTheme(!body.classList.contains('light-mode'));
+});
+
+// Listen for system theme changes (optional, but good practice)
+prefersLight.addEventListener('change', (event) => {
+    if (!localStorage.getItem('theme')) { // Only apply if user hasn't set a preference
+        applyTheme(event.matches);
+    }
 });
 </script>
 
