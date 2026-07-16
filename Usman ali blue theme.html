@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Usman Ali – Senior BI Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<!-- Font Awesome for Sun/Moon Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{
+        /* Dark Mode */
+        --bg:#07090f;
+        --bg2:#0c1018;
+        --bg3:#111620;
+        --c:#00e5ff;
+        --c-dim:rgba(0,229,255,0.15);
+        --text:#dde4f0;
+        --muted:#8b99b3;
+        --border:rgba(255,255,255,0.08);
+
+        /* Light Mode - Default values (will be overridden by .light-mode) */
+        --light-bg:#f8f9fa;
+        --light-bg2:#ffffff;
+        --light-bg3:#e9ecef;
+        --light-c:#007bff; /* A nice blue for light mode */
+        --light-c-dim:rgba(0,123,255,0.15);
+        --light-text:#343a40;
+        --light-muted:#6c757d;
+        --light-border:rgba(0,0,0,0.1);
+    }
+
+    /* Light Mode Variables */
+    body.light-mode{
+        --bg:var(--light-bg);
+        --bg2:var(--light-bg2);
+        --bg3:var(--light-bg3);
+        --c:var(--light-c);
+        --c-dim:var(--light-c-dim);
+        --text:var(--light-text);
+        --muted:var(--light-muted);
+        --border:var(--light-border);
+    }
+
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden; line-height: 1.6; transition: background 0.3s ease, color 0.3s ease;}
+
+    /* Background decorative grid - EXACT ORIGINAL 60PX */
+    body::before{
+        content:'';position:fixed;inset:0;
+        background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+        background-size:60px 60px;pointer-events:none;z-index:0;
+    }
+
+    nav{position:sticky;top:0;z-index:100;background:rgba(7,9,15,0.85);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:12px 6%;backdrop-filter:blur(20px); transition: background 0.3s ease, border-color 0.3s ease;}
+    body.light-mode nav {
+        background: rgba(248, 249, 250, 0.85); /* Light mode nav background */
+        border-bottom: 1px solid var(--light-border);
+    }
+
+    .nav-logo{
+        display: flex; /* Make logo and text side-by-side */
+        align-items: center; /* Vertically align them */
+    }
+    .mono-logo{width:45px;height:45px;border:2px solid var(--c);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:var(--c);box-shadow: 0 0 15px var(--c-dim);flex-shrink: 0; transition: border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;}
+    .nav-id{margin-left:15px; display: flex; align-items: center;} /* Adjusted to be a flex container */
+    .nav-name-top{
+        font-family:'Syne',sans-serif;
+        font-size:18px;
+        font-weight:800;
+        letter-spacing:-0.5px;
+        color: var(--c); /* Apply the cyan color */
+        margin-right: 15px; /* Space between name and potential next element */
+        transition: color 0.3s ease;
+    }
+    .nav-links{display:flex;gap:30px; align-items: center;} /* Added align-items: center for toggle */
+    .nav-links a{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:0.3s;}
+    .nav-links a:hover{color:var(--c);}
+
+    /* Hero Section - STACKED DESIGN */
+    .hero{min-height:95vh;display:flex;align-items:center;justify-content:center;padding:100px 6% 60px;position:relative;z-index:1;text-align:center;}
+    .hero-container{display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 1000px; gap: 40px;}
+    
+    .hero-name{font-family:'Syne',sans-serif; font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s ease;}
+    .hero-role{font-family:'DM Mono',monospace;font-size:16px;color:var(--c);margin-bottom:20px; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s ease;}
+    h1{font-family:'Syne',sans-serif;font-size:clamp(40px, 8vw, 80px);font-weight:750;line-height:0.9;margin-bottom:30px;text-transform:uppercase;letter-spacing:-3px; transition: color 0.3s ease;}
+    h1 span{color:var(--c); transition: color 0.3s ease;}
+    .hero-loc{color:var(--muted);margin-bottom:40px; font-size: 14px; transition: color 0.3s ease;}
+
+    /* Photo Styling - WITH CYAN HIGHLIGHT */
+    .photo-frame {
+        width: 100%;
+        max-width: 380px; 
+        height: auto;
+        aspect-ratio: 380 / 480; 
+        border: 1px solid var(--border);
+        position: relative;
+        border-radius: 24px;
+        overflow: hidden;
+        background: var(--bg2);
+        box-shadow: 0 30px 60px -12px rgba(0,0,0,0.5);
+        transition: all 0.5s ease;
+    }
+    .photo-frame:hover { 
+        border-color: var(--c); 
+        transform: translateY(-10px); 
+        box-shadow: 0 0 30px var(--c-dim);
+    }
+    .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .photo-glow {
+        position: absolute; width: 100%; height: 100%;
+        background: radial-gradient(circle, var(--c-dim) 0%, transparent 70%);
+        top: 0; left: 0; z-index: -1;
+        transition: background 0.3s ease;
+    }
+
+    .btns{display:flex;gap:20px; justify-content: center; flex-wrap: wrap;}
+    .bp, .bs{font-family:'Syne',sans-serif;font-size:12px;padding:18px 35px;letter-spacing:1px;text-transform:uppercase;transition:0.3s; border-radius: 4px; text-decoration: none; display: inline-block;}
+    .bp{background:var(--c);color:#07090f;font-weight:800;border:none; transition: all 0.3s ease;}
+    body.light-mode .bp { color: var(--light-bg); }
+    .bs{background:transparent;color:var(--c);font-weight:700;border:1px solid var(--c); transition: all 0.3s ease;}
+    .bp:hover { background: var(--text); transform: translateY(-5px); }
+    body.light-mode .bp:hover { background: var(--light-text); color: var(--light-bg); }
+    .bs:hover { background: var(--c-dim); }
+
+    .stats-grid{display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 50px; width: 100%; max-width: 600px;}
+    .stat-item{padding:25px; background:var(--bg2); border:1px solid var(--border); border-radius: 16px; transition: all 0.3s;}
+    .stat-item:hover { border-color: var(--c); box-shadow: 0 0 15px var(--c-dim); }
+    .sn{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--c); margin-bottom: 5px; transition: color 0.3s ease;}
+
+    /* Content Sections */
+    section{padding:100px 6%;max-width:1300px;margin:0 auto;}
+    h2{font-family:'Syne',sans-serif;font-size:clamp(32px, 5vw, 48px);font-weight:800;margin-bottom:40px; letter-spacing: -1.5px; transition: color 0.3s ease;}
+
+    /* PROJECTS - HIGHLIGHTED LIKE PHOTO BORDER */
+    .pf{
+        display:grid;
+        grid-template-columns:1.2fr 1fr;
+        border:1px solid var(--border);
+        background:var(--bg2);
+        overflow:hidden;
+        border-radius:24px; 
+        margin-bottom: 40px; 
+        transition: all 0.5s ease; /* Matches photo transition */
+    }
+    .pf:hover { 
+        border-color: var(--c); /* Cyan Highlight */
+        transform: translateY(-10px); /* Lift effect */
+        box-shadow: 0 20px 40px -10px var(--c-dim); /* Glow shadow */
+    }
+    .pf.rev {grid-template-columns: 1fr 1.2fr;}
+    .pfi{position:relative;background:var(--bg3); min-height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: background 0.3s ease;}
+    .pfi img{width: 100%; height: 100%; object-fit: cover;}
+    .pfb{padding:clamp(25px, 5%, 50px);}
+    .ptag{display: inline-block; padding: 6px 14px; background: var(--c-dim); color: var(--c); border-radius: 6px; font-family: 'DM Mono'; font-size: 10px; margin-bottom: 20px; transition: background 0.3s ease, color 0.3s ease;}
+    .pt{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;margin-bottom:15px; transition: color 0.3s ease;}
+    .pd{font-size:16px;color:var(--muted); margin-bottom: 25px; transition: color 0.3s ease;}
+
+    .sg{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:30px;}
+    .skill-group{background:var(--bg2);border:1px solid var(--border);padding:40px; border-radius: 20px; transition: all 0.4s;}
+    .skill-group:hover { border-color: var(--c); box-shadow: 0 0 15px var(--c-dim); }
+
+    /* Contact Card */
+    .cg{display:grid;grid-template-columns:1fr 1.2fr;gap:40px; align-items: center;}
+    .cf-box{background:var(--bg2);border:1px solid var(--border);padding:clamp(30px, 5%, 50px); border-radius: 32px; text-align: center; transition: all 0.4s;}
+    .cf-box:hover { border-color: var(--c); box-shadow: 0 0 20px var(--c-dim); }
+    
+    #contactDetails { display: none; margin-top: 20px; animation: fadeIn 0.5s ease forwards; }
+    .contact-item { font-family: 'DM Mono', monospace; font-size: 18px; color: var(--c); margin-bottom: 15px; display: block; text-decoration: none; transition: color 0.3s ease;}
+    .contact-label { font-size: 12px; color: var(--muted); text-transform: uppercase; margin-bottom: 5px; transition: color 0.3s ease;}
+
+    footer{text-align:center;padding:60px;border-top:1px solid var(--border);color:var(--muted); font-family: 'DM Mono'; font-size: 12px; transition: border-color 0.3s ease, color 0.3s ease;}
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+        background: none;
+        border: none;
+        color: var(--muted);
+        font-size: 1.2em;
+        cursor: pointer;
+        margin-left: 20px;
+        transition: color 0.3s ease;
+        padding: 0; /* Remove default button padding */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .theme-toggle:hover {
+        color: var(--c);
+    }
+    .theme-toggle i {
+        pointer-events: none; /* Prevent icon from interfering with click */
+    }
+
+
+    /* RESPONSIVE BREAKPOINTS */
+    @media(max-width:1024px){
+        .pf, .pf.rev, .cg{grid-template-columns:1fr;}
+        .pf.rev .pfi { order: 0; }
+        .pfi { min-height: 300px; }
+        .hero-container { gap: 20px; } /* Adjust gap for smaller screens */
+        .hero { padding: 80px 6% 40px; } /* Adjust hero padding */
+        h1 { font-size: clamp(38px, 9vw, 80px); letter-spacing: -2px; } /* Adjust h1 size and spacing */
+        section { padding: 80px 6%; } /* Adjust section padding */
+    }
+
+    @media(max-width:768px){ /* Added for tablets and smaller desktops */
+        nav { padding: 10px 4%; }
+        .nav-links { gap: 20px; }
+        .theme-toggle { margin-left: 15px; } /* Adjust margin for smaller screens */
+        .hero-name { font-size: 20px; }
+        .hero-role { font-size: 14px; }
+        .photo-frame { max-width: 300px; aspect-ratio: 300 / 380; border-radius: 16px; }
+        .stats-grid { max-width: 500px; }
+        .stat-item { padding: 20px; border-radius: 12px; }
+        .sn { font-size: 30px; }
+        .pt { font-size: 24px; }
+        .pd { font-size: 15px; }
+        .skill-group { padding: 30px; border-radius: 16px; }
+        .cg { gap: 30px; }
+        .cf-box { border-radius: 24px; }
+    }
+
+    @media(max-width:600px){
+        /* Adjust nav for wrapping */
+        nav {
+            flex-direction: column; /* Stack logo and links vertically */
+            align-items: flex-start; /* Align items to the start */
+            padding-bottom: 0; /* Adjust padding for links below */
+        }
+        .nav-logo {
+            width: 100%; /* Make logo take full width */
+            display: flex;
+            justify-content: space-between; /* Space out logo and potential future menu icon */
+            align-items: center;
+            padding-bottom: 12px; /* Add space below logo */
+        }
+        .nav-links { 
+            display: flex; /* Make links visible */
+            flex-wrap: wrap; /* Allow links to wrap */
+            width: 100%; /* Take full width */
+            justify-content: space-around; /* Distribute links evenly */
+            gap: 10px; /* Smaller gap between links */
+            padding: 10px 0; /* Add vertical padding */
+            border-top: 1px solid var(--border); /* Separator */
+        }
+        .nav-links a {
+            font-size: 10px; /* Smaller font size for links */
+            letter-spacing: 1px;
+            padding: 5px 0; /* Add some padding to clickable area */
+        }
+        .nav-name-top {
+            font-size: 16px; /* Adjust size for small screens */
+            margin-right: 0; /* Remove extra margin */
+        }
+        /* Ensure toggle button is aligned with links in wrapped nav */
+        .theme-toggle {
+            margin-left: 0; /* Remove margin to fit within wrapped links */
+            width: auto; /* Allow button to size naturally */
+            order: 99; /* Push to the end of flex items if it wraps */
+            padding: 5px 0; /* Match link padding */
+        }
+
+
+        .btns a { width: 100%; }
+        .stats-grid { grid-template-columns: 1fr; }
+        h1 { letter-spacing: -1px; }
+        section { padding: 60px 6%; }
+        .hero { padding: 60px 6% 30px; }
+        .hero-namie { font-size: 18px; }
+        .hero-role { font-size: 12px; }
+        h1 { font-size: clamp(30px, 10vw, 60px); }
+        .photo-frame { max-width: 250px; aspect-ratio: 250 / 320; border-radius: 12px; }
+        .pt { font-size: 20px; margin-bottom: 10px; }
+        .pd { font-size: 14px; }
+        .pfb { padding: clamp(20px, 4%, 40px); }
+        footer { padding: 40px 6%; font-size: 10px; }
+    }
+    @media(max-width:480px){ /* Added for small mobile devices */
+        nav { padding: 10px 4%; }
+        .mono-logo { width: 40px; height: 40px; font-size: 14px; }
+        .nav-id { margin-left: 10px; }
+        .nav-name-top { font-size: 14px; /* Even smaller for very small screens */ }
+        .hero { padding: 40px 4% 20px; }
+        .hero-name { font-size: 16px; }
+        .hero-role { font-size: 11px; }
+        h1 { 
+            font-size: 2em; /* Fixed a more readable size */
+            letter-spacing: normal; /* Remove letter spacing to prevent overflow */
+            line-height: 1.1; /* Adjust line height for better readability */
+        }
+        .hero-loc { font-size: 12px; margin-bottom: 30px; }
+        .btns { gap: 10px; }
+        .bp, .bs { padding: 15px 25px; font-size: 11px; }
+        .stats-grid { gap: 15px; margin-top: 40px; }
+        .stat-item { padding: 15px; }
+        .sn { font-size: 28px; }
+        h2 { font-size: clamp(28px, 6vw, 40px); margin-bottom: 30px; }
+        section { padding: 50px 4%; }
+        .pfb { padding: 20px; }
+        .ptag { font-size: 9px; margin-bottom: 15px; }
+        .pt { font-size: 18px; }
+        .pd { font-size: 13px; }
+        .skill-group { padding: 25px; }
+        .contact-item { font-size: 16px; }
+        footer { padding: 30px 4%; }
+    }
+
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="mono-logo">UA</div>
+    <div class="nav-id">
+      <div class="nav-name-top">Usman Ali</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Connect</a>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light/dark mode">
+        <i class="fas fa-moon"></i> <!-- Default to moon for dark mode -->
+    </button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-container">
+    <div class="hero-image-area">
+        <div class="photo-glow"></div>
+        <div class="photo-frame">
+            <img src="https://raw.githubusercontent.com/Usma0808/Usman-Ali-BI-Portfolio/main/Usman%20Ali%20Pic%204.png" alt="Usman Ali">
+        </div>
+    </div>
+    
+    <div class="hero-content">
+        <p class="hero-name">Usman Ali</p>
+        <p class="hero-role">Senior BI Analyst</p>
+        <h1>Visualizing<span> Business Impact</span></h1>
+        <p class="hero-loc">📍 Abu Dhabi, United Arab Emirates</p>
+        
+        <div class="btns">
+            <a href="#projects" class="bp">View Projects</a>
+            <a href="#contact" class="bs">Get In Touch</a>
+        </div>
+
+        <div class="stats-grid" style="margin-left: auto; margin-right: auto;">
+            <div class="stat-item"><div class="sn">25+</div><p>Enterprise Dashboards</p></div>
+            <div class="stat-item"><div class="sn">8+</div><p>Years Experience</p></div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <h2>Transforming complex datasets into executive clarity.</h2>
+  <div class="cg">
+      <p style="font-size: 18px;">Based in <b>Abu Dhabi</b>, I bridge the gap between raw data engineering and strategic decision-making. My expertise lies in high-stakes reporting across Procurement, Finance Managment, Plant Operations, energy sector, logistics, and project management.</p>
+      <div class="skill-group">
+          <p>📊 <b>Data Architecture:</b> ETL, Power Query, Star / Snowflake Schema.</p><br>
+          <p>📈 <b>Advanced Analytics:</b> Complex DAX, Trend Forecasting.</p><br>
+          <p>💼 <b>Domain Knowledge:</b> Contracts, Supply Chain, Audit, Finance, Energy & Logistics Operations.</p>
+      </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Selected Works</h2>
+  <div id="project-list"></div>
+</section>
+
+<section id="skills">
+  <h2>Technical Stack</h2>
+  <div class="sg">
+    <div class="skill-group">
+      <h3>Tools & Languages</h3><br>
+      <p>Power BI & DAX (Expert)</p>
+      <p>SQL / T-SQL (Advanced)</p>
+      <p>Data Modeling & Warehousing</p>
+      <p>Microsoft Fabric & Power Platform</p>
+      <p>AI Agent Developer</p>
+      <p>Excel / Power Query</p>
+    </div>
+    <div class="skill-group">
+      <h3>Business Solutions</h3><br>
+      <p>Financial Variance Analysis</p>
+      <p>Procurement Lifecycle Tracking</p>
+      <p>Audit Compliance</p>
+      <p>Production Optimization</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="cg">
+    <div>
+        <p style="color: var(--c); font-family: 'DM Mono'; margin-bottom: 10px;">// Contact</p>
+      <h2>Let's build a data-driven future.</h2>
+      <p>🔗 <a href="https://www.linkedin.com/in/usman-ali-3483b41b0/" target="_blank" style="color:var(--c); text-decoration: none; border-bottom: 1px solid var(--c);">Connect on LinkedIn</a></p>
+    </div>
+    <div class="cf-box">
+      <div id="contactPrompt">
+        <p style="margin-bottom: 30px; color: var(--muted);">Click to reveal direct contact information.</p>
+        <button id="revealBtn" class="bp" style="width:100%">Contact</button>
+      </div>
+      
+      <div id="contactDetails">
+        <div class="contact-label">Phone Number</div>
+        <a href="tel:+971553914338" class="contact-item">+971 55 391 4338</a>
+        
+        <div class="contact-label" style="margin-top: 25px;">Email Address</div>
+        <a href="mailto:usmanali0808@outlook.com" class="contact-item">usmanali0808@outlook.com</a>
+        
+        <button onclick="window.location.reload()" style="background: transparent; border: none; color: var(--muted); cursor: pointer; font-family: 'DM Mono'; font-size: 10px; margin-top: 30px; text-transform: uppercase;">← Back</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+    <div class="mono-logo" style="margin: 0 auto 20px;">UA</div>
+    &copy; 2026 Usman Ali
+</footer>
+
+<script>
+const PROJECTS = [
+    {
+        title: "Marketing & Campaign Performance Dashboard",
+        tag: "Compliance & Risk",
+        desc: "This Marketing & Campaign Performance Dashboard transforms 400k+ event rows into a strategic tool for managing a $2.54M budget. Built on a Star Schema for speed , it identifies critical 'budget leaks,' like Campaign 35’s $6,512 CPA. Key features include demographic breakdowns showing the 25-34 age group as top buyers and a heatmap to optimize spend timing. It moves beyond basic charts to provide true ROI and efficiency analysis.",
+        img: "https://raw.githubusercontent.com/Usma0808/Usman-Ali-BI-Portfolio/main/Marketing%20%26%20Campaign%20Performance%20Dashboard.png"
+    },
+    { // NEW PROJECT ADDED HERE
+        title: "Food Delivery Analytics Dashboard",
+        tag: "Performance & Revenue Analytics",
+        desc: "Food Delivery Analytics Dashboard optimizes $94.55K in revenue by unifying financial performance with logistical KPIs. It tracks 766 orders across the UAE, pinpointing 'Spice Hub' as a top performer while identifying bottlenecks in payment gateways and agent delivery rates. This tool transforms raw delivery data into actionable insights to improve ROI and operational efficiency.",
+        img: "https://raw.githubusercontent.com/Usma0808/Usman-Ali-BI-Portfolio/main/Food%20Delivery%20Analytics%20Dashboard.png" // CORRECTED URL
+    },
+    {
+        title: "Resource Management Dashboard",
+        tag: "Procurement Intelligence",
+        desc: "A comprehensive solution monitoring $675M+ in contract value. Features real-time alerts for 62 upcoming expirations.",
+        img: "https://raw.githubusercontent.com/Usma0808/Usman-Ali-BI-Portfolio/main/Contract%20Management.png"
+    },
+    {
+        title: "OPEX & CAPEX Financial Suite",
+        tag: "Finance & Budgeting",
+        desc: "Unified financial performance monitoring. Tracks YTD budget vs actuals and identifies top overspend contributors.",
+        img: "https://raw.githubusercontent.com/Usma0808/Usman-Ali-BI-Portfolio/main/finance%20Dashboard.png"
+    },
+    {
+        title: "Acquisition Request Dashboard",
+        tag: "Supply Chain Analytics",
+        desc: "Monitoring $90M in active Acquisition Requests (AR). Designed to identify bottlenecks in the procurement cycle.",
+        img: "https://raw.githubusercontent.com/Usma0808/Usman-Ali-BI-Portfolio/main/Acquisition%20Request%20Tracker.png"
+    },
+    {
+        title: "Plant Production Monitoring",
+        tag: "Industrial Operations",
+        desc: "Live production engine for Oil, Gas, and Refined products using gauge visuals and 30-day historical trends.",
+        img: "https://raw.githubusercontent.com/Usma0808/Usman-Ali-BI-Portfolio/main/Plant%20Production%20Monitoring.png"
+    },
+    {
+        title: "Operations Action Dashboard",
+        tag: "Project Management",
+        desc: "Dynamic task management for 157 operational activities with automated status indicators.",
+        img: "https://raw.githubusercontent.com/Usma0808/Usman-Ali-BI-Portfolio/main/Operations%20Action%20Tracker.png"
+    },
+    {
+        title: "Audit Dashboard",
+        tag: "Compliance & Risk",
+        desc: "High-level risk oversight for 40 audit findings. Tracks remediation tasks by month and criticality.",
+        img: "https://raw.githubusercontent.com/Usma0808/Usman-Ali-BI-Portfolio/main/Internal%20Audit%20Dashboard.png"
+    }
+];
+const projectContainer = document.getElementById('project-list');
+PROJECTS.forEach((p, index) => {
+    const isRev = index % 2 !== 0 ? 'rev' : '';
+    projectContainer.innerHTML += `
+        <div class="pf ${isRev}">
+            <div class="pfi"><img src="${p.img}" alt="${p.title}" loading="lazy"></div>
+            <div class="pfb">
+                <div class="ptag">${p.tag}</div>
+                <div class="pt">${p.title}</div>
+                <div class="pd">${p.desc}</div>
+            </div>
+        </div>
+    `;
+});
+
+document.getElementById('revealBtn').addEventListener('click', function() {
+    document.getElementById('contactPrompt').style.display = 'none';
+    document.getElementById('contactDetails').style.display = 'block';
+});
+
+// Theme Toggle Script
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Check for saved theme preference or system preference
+const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+
+function applyTheme(isLight) {
+    if (isLight) {
+        body.classList.add('light-mode');
+        themeToggle.querySelector('i').className = 'fas fa-sun';
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.classList.remove('light-mode');
+        themeToggle.querySelector('i').className = 'fas fa-moon';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Initial theme load
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    applyTheme(savedTheme === 'light');
+} else {
+    // Default to dark mode if no preference is saved
+    applyTheme(false); 
+}
+
+// Listen for toggle click
+themeToggle.addEventListener('click', () => {
+    applyTheme(!body.classList.contains('light-mode'));
+});
+
+// Listen for system theme changes (optional, but good practice)
+prefersLight.addEventListener('change', (event) => {
+    if (!localStorage.getItem('theme')) { // Only apply if user hasn't set a preference
+        applyTheme(event.matches);
+    }
+});
+</script>
+
+</body>
+</html>
